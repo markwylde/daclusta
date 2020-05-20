@@ -7,7 +7,7 @@
 
 An in memory/file based database that can run on multiple threads.
 
-## Insallation
+## Installation
 
 ```bash
 npm i --save daclusta
