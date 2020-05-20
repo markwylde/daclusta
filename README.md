@@ -99,6 +99,18 @@ example()
     <td>connection, id</td>
     <td>Delete an existing record on a database.</td>
   </tr>
+  <tr>
+    <td><a href="https://www.github.com/bitabase/bitabase-manager">2.6</a></td>
+    <td><code>.addListener</code></td>
+    <td>connection, handler</td>
+    <td>Listen to changes.</td>
+  </tr>
+  <tr>
+    <td><a href="https://www.github.com/bitabase/bitabase-manager">2.7</a></td>
+    <td><code>.removeListener</code></td>
+    <td>connection, handler</td>
+    <td>Stop listening to changes.</td>
+  </tr>
 </table>
 
 ## License

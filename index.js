@@ -1,8 +1,9 @@
+const EventEmitter = require('events');
 const { promisify } = require('util');
 const fs = require('fs');
 const tailRead = require('tail-read');
 
-const actions = require('./actions')
+const actions = require('./actions');
 
 const operations = {
   POST: 1,
@@ -12,6 +13,8 @@ const operations = {
 };
 
 function connect (file, callback) {
+  const eventEmitter = new EventEmitter();
+
   fs.writeFileSync(file, '', () => {});
   const tail = tailRead(file);
   const db = {};
@@ -69,6 +72,7 @@ function connect (file, callback) {
   });
 
   callback(null, {
+    eventEmitter,
     getDb: () => db,
     tail,
     file
@@ -91,6 +95,8 @@ module.exports = {
     post: promisify(actions.post),
     put: promisify(actions.put),
     patch: promisify(actions.patch),
-    del: promisify(actions.del)
+    del: promisify(actions.del),
+    addListener: promisify(actions.addListener),
+    removeListener: promisify(actions.removeListener)
   }
 };

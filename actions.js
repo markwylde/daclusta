@@ -1,4 +1,3 @@
-const { promisify } = require('util');
 const fs = require('fs');
 const uuid = require('uuid').v4;
 
@@ -72,10 +71,20 @@ function del (connection, id, callback) {
   fs.writeFile(connection.file, JSON.stringify(line) + '\n', { flag: 'a' }, () => {});
 }
 
+function addListener (connection, handler) {
+  connection.tail.on('line', handler);
+}
+
+function removeListener (connection, handler) {
+  connection.tail.off('line', handler);
+}
+
 module.exports = {
   get,
   post,
   put,
   patch,
-  del
+  del,
+  addListener,
+  removeListener
 };
