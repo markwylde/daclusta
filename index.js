@@ -2,6 +2,8 @@ const { promisify } = require('util');
 const fs = require('fs');
 const tailRead = require('tail-read');
 
+const actions = require('./actions')
+
 const operations = {
   POST: 1,
   PUT: 2,
@@ -9,7 +11,7 @@ const operations = {
   DELETE: 4
 };
 
-function connect (file) {
+function connect (file, callback) {
   fs.writeFileSync(file, '', () => {});
   const tail = tailRead(file);
   const db = {};
@@ -66,11 +68,11 @@ function connect (file) {
     }
   });
 
-  return {
+  callback(null, {
     getDb: () => db,
     tail,
     file
-  };
+  });
 }
 
 function close (connection, callback) {
@@ -79,7 +81,16 @@ function close (connection, callback) {
 
 module.exports = {
   connect,
-  close: promisify(close),
+  close,
+  ...actions,
 
-  ...require('./actions')
+  promises: {
+    connect: promisify(connect),
+    close: promisify(close),
+    get: promisify(actions.get),
+    post: promisify(actions.post),
+    put: promisify(actions.put),
+    patch: promisify(actions.patch),
+    del: promisify(actions.del)
+  }
 };

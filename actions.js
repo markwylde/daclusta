@@ -72,12 +72,10 @@ function del (connection, id, callback) {
   fs.writeFile(connection.file, JSON.stringify(line) + '\n', { flag: 'a' }, () => {});
 }
 
-const promises = {
-  get: promisify(get),
-  post: promisify(post),
-  put: promisify(put),
-  patch: promisify(patch),
-  del: promisify(del)
+module.exports = {
+  get,
+  post,
+  put,
+  patch,
+  del
 };
-
-module.exports = promises;

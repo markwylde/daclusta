@@ -1,7 +1,7 @@
 const fs = require('fs');
 const test = require('tape');
 
-const db = require('../');
+const db = require('../').promises;
 
 function clean () {
   try {
@@ -14,7 +14,7 @@ test('insert a record', async t => {
 
   clean();
 
-  const connection = db.connect('/tmp/db.json');
+  const connection = await db.connect('/tmp/db.json');
   const insertedRecord = await db.post(connection, { example: 1 });
   await db.close(connection);
 
@@ -26,7 +26,7 @@ test('read an inserted record', async t => {
 
   clean();
 
-  const connection = db.connect('/tmp/db.json');
+  const connection = await db.connect('/tmp/db.json');
   const insertedRecord = await db.post(connection, { example: 1 });
   const readRecord = await db.get(connection, insertedRecord.meta.id);
   await db.close(connection);
@@ -39,7 +39,7 @@ test('update a record', async t => {
 
   clean();
 
-  const connection = db.connect('/tmp/db.json');
+  const connection = await db.connect('/tmp/db.json');
   const insertedRecord = await db.post(connection, { example: 1 });
   const updatedRecord = await db.put(connection, insertedRecord.meta.id, { different: 2 });
   const readRecord = await db.get(connection, updatedRecord.meta.id);
@@ -53,7 +53,7 @@ test('patch a record', async t => {
 
   clean();
 
-  const connection = db.connect('/tmp/db.json');
+  const connection = await db.connect('/tmp/db.json');
   const insertedRecord = await db.post(connection, { example: 1 });
   const updatedRecord = await db.patch(connection, insertedRecord.meta.id, { different: 2 });
   const readRecord = await db.get(connection, updatedRecord.meta.id);
@@ -67,7 +67,7 @@ test('delete a record', async t => {
 
   clean();
 
-  const connection = db.connect('/tmp/db.json');
+  const connection = await db.connect('/tmp/db.json');
   const insertedRecord = await db.post(connection, { example: 1 });
   const updatedRecord = await db.del(connection, insertedRecord.meta.id);
   const readRecord = await db.get(connection, insertedRecord.meta.id);

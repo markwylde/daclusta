@@ -16,19 +16,24 @@ npm i --save daclusta
 ## Usage
 
 ```javascript
-const db = require('daclusta')
-const connection = db.connect('./db.json');
+const db = require('daclusta').promises
 
-const insertedRecord = await db.post(connection, {
-  firstName: 'Joe',
-  lastName: 'Bloggs
-});
+async function example () {
+  const connection = await db.connect('./db.json');
 
-const readRecord = await db.get(connection, insertedRecord.meta.id);
+  const insertedRecord = await db.post(connection, {
+    firstName: 'Joe',
+    lastName: 'Bloggs
+  });
 
-await db.close(connection);
+  const readRecord = await db.get(connection, insertedRecord.meta.id);
 
-// readRecord.doc === { example: 1 }
+  await db.close(connection);
+
+  // readRecord.doc === { example: 1 }
+}
+
+example()
 ```
 
 ## API
