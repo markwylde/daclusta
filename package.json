@@ -7,8 +7,16 @@
     "test": "node test"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "markwylde",
+    "url": "https://github.com/markwylde",
+    "email": "me@markwylde.com"
+  },
+  "license": "AGPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/markwylde/daclusta.git"
+  },
   "dependencies": {
     "tail": "^2.0.3",
     "tail-read": "^1.3.0",
