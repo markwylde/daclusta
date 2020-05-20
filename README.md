@@ -79,19 +79,19 @@ await db.close(connection);
   <tr>
     <td><a href="https://www.github.com/bitabase/bitabase-manager">2.3</a></td>
     <td>.put</td>
-    <td>connection, newRecord</td>
+    <td>connection, id, newRecord</td>
     <td>Replace an existing record with another on a database.</td>
   </tr>
   <tr>
     <td><a href="https://www.github.com/bitabase/bitabase-manager">2.4</a></td>
     <td>.patch</td>
-    <td>connection, partialRecord, </td>
+    <td>connection, id, partialRecord, </td>
     <td>Set some properties on an existing record on a database.</td>
   </tr>
   <tr>
     <td><a href="https://www.github.com/bitabase/bitabase-manager">2.5</a></td>
     <td>.del</td>
-    <td>connection, record</td>
+    <td>connection, id</td>
     <td>Delete an existing record on a database.</td>
   </tr>
 </table>
