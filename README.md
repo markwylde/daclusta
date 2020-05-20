@@ -1,5 +1,6 @@
 # daclusta
 [![Build Status](https://travis-ci.org/markwylde/daclusta.svg?branch=master)](https://travis-ci.org/markwylde/daclusta)
+[![Known Vulnerabilities](https://snyk.io/test/github/markwylde/daclusta/badge.svg?targetFile=package.json)](https://snyk.io/test/github/markwylde/daclusta?targetFile=package.json)
 [![David DM](https://david-dm.org/markwylde/daclusta.svg)](https://david-dm.org/markwylde/daclusta)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/markwylde/daclusta)
 [![GitHub package.json version](https://img.shields.io/github/package-json/v/markwylde/daclusta)](https://github.com/markwylde/daclusta/releases)
