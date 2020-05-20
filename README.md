@@ -48,13 +48,13 @@ await db.close(connection);
   </tr>
   <tr>
     <td><a href="https://www.github.com/bitabase/bitabase-manager">1.1</a></td>
-    <td>.connect</td>
+    <td><code>.connect</code></td>
     <td>filename</td>
     <td>Connect to a database. Will create if does not exist.</td>
   </tr>
   <tr>
     <td><a href="https://www.github.com/bitabase/bitabase-manager">1.2</a></td>
-    <td>.close</td>
+    <td><code>.close</code></td>
     <td>connection</td>
     <td>Close a connection.</td>
   </tr>
@@ -66,31 +66,31 @@ await db.close(connection);
   </tr>
   <tr>
     <td><a href="https://www.github.com/bitabase/bitabase-manager">2.1</a></td>
-    <td>.get</td>
+    <td><code>.get</code></td>
     <td>connection, id</td>
     <td>Get a record on a database by id.</td>
   </tr>
   <tr>
     <td><a href="https://www.github.com/bitabase/bitabase-manager">2.2</a></td>
-    <td>.post</td>
+    <td><code>.post</code></td>
     <td>connection, record</td>
     <td>Create a new record on a database.</td>
   </tr>
   <tr>
     <td><a href="https://www.github.com/bitabase/bitabase-manager">2.3</a></td>
-    <td>.put</td>
+    <td><code>.put</code></td>
     <td>connection, id, newRecord</td>
     <td>Replace an existing record with another on a database.</td>
   </tr>
   <tr>
     <td><a href="https://www.github.com/bitabase/bitabase-manager">2.4</a></td>
-    <td>.patch</td>
+    <td><code>.patch</code></td>
     <td>connection, id, partialRecord, </td>
     <td>Set some properties on an existing record on a database.</td>
   </tr>
   <tr>
     <td><a href="https://www.github.com/bitabase/bitabase-manager">2.5</a></td>
-    <td>.del</td>
+    <td><code>.del</code></td>
     <td>connection, id</td>
     <td>Delete an existing record on a database.</td>
   </tr>
