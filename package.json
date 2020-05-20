@@ -1,6 +1,6 @@
 {
   "name": "daclusta",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "An in memory and file based database that can run on multiple threads",
   "main": "index.js",
   "scripts": {
