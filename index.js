@@ -71,14 +71,14 @@ function connect (file, callback) {
     }
   });
 
-  setTimeout(() => {
+  tail._stream.on('eof', function () {
     callback(null, {
       eventEmitter,
       getDb: () => db,
       tail,
       file
     });
-  }, 5);
+  });
 }
 
 function close (connection, callback) {
