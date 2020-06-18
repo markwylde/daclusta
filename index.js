@@ -12,10 +12,8 @@ const operations = {
   DELETE: 4
 };
 
-function connect (file, callback) {
+function tailDatabaseFile (file, callback) {
   const eventEmitter = new EventEmitter();
-
-  fs.writeFile(file, '', () => {});
   const tail = tailRead(file);
   const db = {};
 
@@ -78,6 +76,15 @@ function connect (file, callback) {
       tail,
       file
     });
+  });
+}
+
+function connect (file, callback) {
+  fs.writeFile(file, '', (error) => {
+    if (error) {
+      return callback(error);
+    }
+    tailDatabaseFile(file, callback);
   });
 }
 
