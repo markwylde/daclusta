@@ -24,7 +24,7 @@ function connect (file, callback) {
       return;
     }
 
-    data = JSON.parse(data);
+    data = JSON.parse(data.toString('utf8'));
     if (data[0] === operations.POST) {
       db[data[1]] = {
         meta: {
