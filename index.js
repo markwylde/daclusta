@@ -15,7 +15,7 @@ const operations = {
 function connect (file, callback) {
   const eventEmitter = new EventEmitter();
 
-  fs.writeFileSync(file, '', () => {});
+  fs.writeFile(file, '', () => {});
   const tail = tailRead(file);
   const db = {};
 
@@ -71,12 +71,14 @@ function connect (file, callback) {
     }
   });
 
-  callback(null, {
-    eventEmitter,
-    getDb: () => db,
-    tail,
-    file
-  });
+  setTimeout(() => {
+    callback(null, {
+      eventEmitter,
+      getDb: () => db,
+      tail,
+      file
+    });
+  }, 5);
 }
 
 function close (connection, callback) {
