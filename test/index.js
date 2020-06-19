@@ -108,3 +108,32 @@ test('remove listen', async t => {
     db.close(connection);
   }, 100);
 });
+
+test('stress test: insert a record', async t => {
+  t.plan(2);
+
+  clean();
+
+  const timeStarted = Date.now();
+
+  const connection = await db.connect('/tmp/db.json');
+
+  const insertedRecords = [];
+  for (let i = 0; i < 1000; i++) {
+    const record = { example: insertedRecords.length + 1 };
+    insertedRecords.push(
+      db.post(connection, record)
+    );
+  }
+
+  await Promise.all(insertedRecords);
+
+  const timeTaken = Date.now() - timeStarted;
+
+  const rawDb = connection.getDb();
+
+  t.equal(Object.keys(rawDb).length, 1000);
+  t.ok(timeTaken < 2000, `took less than 2000ms (actual ${timeTaken}ms)`);
+
+  await db.close(connection);
+});

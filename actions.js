@@ -19,12 +19,14 @@ function post (connection, record, callback) {
   const db = connection.getDb();
   const line = [operations.POST, id, record];
 
-  connection.tail.on('line', line => {
+  const checkComplete = line => {
     const data = JSON.parse(line);
     if (data[1] === id) {
+      connection.tail.off('line', checkComplete);
       callback(null, db[id]);
     }
-  });
+  };
+  connection.tail.on('line', checkComplete);
 
   fs.writeFile(connection.file, JSON.stringify(line) + '\n', { flag: 'a' }, () => {});
 }
@@ -33,12 +35,14 @@ function put (connection, id, record, callback) {
   const line = [operations.PUT, id, record];
   const db = connection.getDb();
 
-  connection.tail.on('line', line => {
+  const checkComplete = line => {
     const data = JSON.parse(line);
     if (data[1] === id) {
+      connection.tail.off('line', checkComplete);
       callback(null, db[id]);
     }
-  });
+  };
+  connection.tail.on('line', checkComplete);
 
   fs.writeFile(connection.file, JSON.stringify(line) + '\n', { flag: 'a' }, () => {});
 }
@@ -47,12 +51,14 @@ function patch (connection, id, record, callback) {
   const line = [operations.PATCH, id, record];
   const db = connection.getDb();
 
-  connection.tail.on('line', line => {
+  const checkComplete = line => {
     const data = JSON.parse(line);
     if (data[1] === id) {
+      connection.tail.off('line', checkComplete);
       callback(null, db[id]);
     }
-  });
+  };
+  connection.tail.on('line', checkComplete);
 
   fs.writeFile(connection.file, JSON.stringify(line) + '\n', { flag: 'a' }, () => {});
 }
@@ -61,12 +67,14 @@ function del (connection, id, callback) {
   const line = [operations.DELETE, id];
   const db = connection.getDb();
 
-  connection.tail.on('line', line => {
+  const checkComplete = line => {
     const data = JSON.parse(line);
     if (data[1] === id) {
+      connection.tail.off('line', checkComplete);
       callback(null, db[id]);
     }
-  });
+  };
+  connection.tail.on('line', checkComplete);
 
   fs.writeFile(connection.file, JSON.stringify(line) + '\n', { flag: 'a' }, () => {});
 }
