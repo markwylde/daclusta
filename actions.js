@@ -1,4 +1,3 @@
-const fs = require('fs');
 const uuid = require('uuid').v4;
 
 const operations = {
@@ -28,7 +27,7 @@ function post (connection, record, callback) {
   };
   connection.tail.on('line', checkComplete);
 
-  fs.writeFile(connection.file, JSON.stringify(line) + '\n', { flag: 'a' }, () => {});
+  connection.fd.write(JSON.stringify(line) + '\n', () => {});
 }
 
 function put (connection, id, record, callback) {
@@ -44,7 +43,7 @@ function put (connection, id, record, callback) {
   };
   connection.tail.on('line', checkComplete);
 
-  fs.writeFile(connection.file, JSON.stringify(line) + '\n', { flag: 'a' }, () => {});
+  connection.fd.write(JSON.stringify(line) + '\n', () => {});
 }
 
 function patch (connection, id, record, callback) {
@@ -60,7 +59,7 @@ function patch (connection, id, record, callback) {
   };
   connection.tail.on('line', checkComplete);
 
-  fs.writeFile(connection.file, JSON.stringify(line) + '\n', { flag: 'a' }, () => {});
+  connection.fd.write(JSON.stringify(line) + '\n', () => {});
 }
 
 function del (connection, id, callback) {
@@ -76,7 +75,7 @@ function del (connection, id, callback) {
   };
   connection.tail.on('line', checkComplete);
 
-  fs.writeFile(connection.file, JSON.stringify(line) + '\n', { flag: 'a' }, () => {});
+  connection.fd.write(JSON.stringify(line) + '\n', () => {});
 }
 
 function addListener (connection, handler) {

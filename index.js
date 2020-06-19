@@ -16,6 +16,7 @@ function tailDatabaseFile (file, callback) {
   const eventEmitter = new EventEmitter();
   const tail = tailRead(file);
   const db = {};
+  const fd = fs.createWriteStream(file, { flags: 'a' });
 
   tail.on('line', function (data) {
     if (!data) {
@@ -74,7 +75,8 @@ function tailDatabaseFile (file, callback) {
       eventEmitter,
       getDb: () => db,
       tail,
-      file
+      file,
+      fd
     });
   });
 }
