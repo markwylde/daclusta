@@ -18,7 +18,7 @@
     "url": "https://github.com/markwylde/daclusta.git"
   },
   "dependencies": {
-    "tail": "^2.0.3",
+    "tail": "^2.0.4",
     "tail-read": "^1.11.0",
     "tape": "^5.0.1",
     "uuid": "^8.1.0"
