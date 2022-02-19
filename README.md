@@ -24,7 +24,7 @@ async function example () {
 
   const insertedRecord = await db.post(connection, {
     firstName: 'Joe',
-    lastName: 'Bloggs
+    lastName: 'Bloggs'
   });
 
   const readRecord = await db.get(connection, insertedRecord.meta.id);
